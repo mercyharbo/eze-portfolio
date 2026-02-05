@@ -35,10 +35,20 @@ export default function RootLayout({
         <main id='main-content' className='min-h-screen pt-20'>
           {children}
         </main>
-        <footer className='py-12 px-5 lg:px-10 border-t border-border/10 text-center'>
-          <p className='text-sm text-foreground/60'>
-            © {new Date().getFullYear()} Chibueze Umechukwu. Built with passion.
-          </p>
+        <footer className='px-5 lg:px-10 relative'>
+          <div className='max-w-7xl py-16 mx-auto flex flex-col items-center justify-center relative'>
+            <div className='relative flex items-center justify-center w-full min-h-[200px]'>
+              {/* Massive Faded Background Text */}
+              <h2 className='text-[18vw] md:text-[14vw] font-bold text-foreground/5 select-none tracking-tighter leading-none capitalize'>
+                Say Hello
+              </h2>
+
+              {/* Foreground Accent Text (100% Opacity) */}
+              <p className='absolute text-3xl md:text-5xl font-accent text-foreground tracking-widest opacity-100 z-10'>
+                Got a project?
+              </p>
+            </div>
+          </div>
         </footer>
       </body>
     </html>

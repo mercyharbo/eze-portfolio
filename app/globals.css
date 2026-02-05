@@ -41,7 +41,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-deep: #1b314b;
+  --color-deep: var(--deep);
+  --color-navy: var(--navy);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -57,6 +58,8 @@
   --foreground: #f8fafc;
   --card: #1b314b;
   --card-foreground: #f8fafc;
+  --deep: #1b314b;
+  --navy: #0a141e;
   --popover: #1b314b;
   --popover-foreground: #f8fafc;
   --primary: #22d3ee;
@@ -92,6 +95,8 @@
   --foreground: #f8fafc;
   --card: #1b314b;
   --card-foreground: #f8fafc;
+  --deep: #1b314b;
+  --navy: #0a141e;
   --popover: #1b314b;
   --popover-foreground: #f8fafc;
   --primary: #22d3ee;
