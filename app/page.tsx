@@ -1,3 +1,5 @@
+'use client'
+
 import { MarqueeSlide } from '@/components/marquee-slide'
 import {
   Card,
@@ -7,6 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   ArrowDown,
   ArrowRight,
@@ -21,18 +26,106 @@ import {
   User,
 } from 'lucide-react'
 import Link from 'next/link'
+import { useRef } from 'react'
 
 export default function Home() {
+  const container = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      // Register ScrollTrigger inside the hook for SSR compatibility
+      gsap.registerPlugin(ScrollTrigger)
+
+      // Hero entrance animation
+      gsap.fromTo(
+        '.hero-animate',
+        {
+          y: 60,
+          skewY: 5,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          skewY: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: 'power4.out',
+          stagger: 0.1,
+        },
+      )
+
+      // Scroll animations for section reveals
+      gsap.utils.toArray<HTMLElement>('.reveal').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'restart none restart none',
+            },
+          },
+        )
+      })
+
+      // Header-specific reveals
+      gsap.utils.toArray<HTMLElement>('.reveal-header').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'restart none restart none',
+            },
+          },
+        )
+      })
+
+      // Staggered grid reveals
+      gsap.utils.toArray<HTMLElement>('.reveal-stagger').forEach((section) => {
+        const children = section.children
+        gsap.fromTo(
+          children,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 85%',
+              toggleActions: 'restart none restart none',
+            },
+          },
+        )
+      })
+    },
+    { scope: container },
+  )
+
   return (
-    <div className='flex flex-col min-h-screen space-y-10'>
+    <div ref={container} className='flex flex-col min-h-screen space-y-10'>
       {/* Hero Section */}
       <section
         aria-labelledby='hero-heading'
         className='relative min-h-[50vh] flex flex-col items-center justify-center text-center px-5 lg:px-10 pt-20 overflow-hidden'
       >
-        <header className='max-w-4xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-1000 ease-out'>
+        <header className='max-w-4xl mx-auto space-y-10'>
           <div className='flex flex-col items-center gap-4'>
-            <div className='flex items-center justify-center gap-2 group animate-bounce-subtle'>
+            <div className='hero-animate flex items-center justify-center gap-2 group mb-4'>
               <p className='text-2xl text-foreground tracking-wide font-accent'>
                 Hello
               </p>
@@ -43,7 +136,7 @@ export default function Home() {
 
             <h1
               id='hero-heading'
-              className='text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-foreground'
+              className='hero-animate text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-foreground h-auto p-1'
             >
               I&apos;m a product designer that turns{' '}
               <span className='text-primary font-semibold inline-block'>
@@ -67,7 +160,7 @@ export default function Home() {
       <MarqueeSlide />
 
       {/* The Problem Section */}
-      <section className='relative py-24 px-5 lg:px-10 bg-[#09111A] overflow-hidden'>
+      <section className='reveal relative py-24 px-5 lg:px-10 bg-[#09111A] overflow-hidden'>
         {/* Full-Width Primary Glow Effect (Haze) */}
         <div className='absolute inset-0 pointer-events-none'>
           <div className='absolute top-[-10%] left-[-10%] w-[120%] h-[120%] bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.15)_0%,transparent_60%)] blur-[100px]' />
@@ -77,7 +170,7 @@ export default function Home() {
         <div className='max-w-7xl mx-auto relative z-10'>
           <div className='space-y-12'>
             <div className='space-y-6 max-w-xl'>
-              <h2 className='text-4xl font-accent text-foreground tracking-wide'>
+              <h2 className='reveal-header text-4xl font-accent text-foreground tracking-wide'>
                 The Problem
               </h2>
               <p className='text-lg md:text-xl lg:text-3xl leading-[1.3] text-foreground tracking-tight'>
@@ -89,7 +182,7 @@ export default function Home() {
             <div className='flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8'>
               <p className='text-xl text-foreground '>Teams struggle with:</p>
 
-              <div className='grid grid-cols-1 md:grid-cols-3 gap-4 w-full lg:w-auto'>
+              <div className='reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-4 w-full lg:w-auto'>
                 {[
                   'Unclear user flows',
                   'Many feature overload',
@@ -111,7 +204,7 @@ export default function Home() {
       </section>
 
       {/* The Solution Section */}
-      <section className='px-5 lg:px-10 py-32 relative'>
+      <section className='reveal px-5 lg:px-10 py-20 relative'>
         <div className='max-w-7xl mx-auto relative'>
           {/* Fading Grid Lines */}
           <div
@@ -129,7 +222,7 @@ export default function Home() {
             <div className='absolute top-0 left-1/2 w-px h-full bg-linear-to-b from-transparent via-primary to-transparent hidden md:block lg:hidden' />
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10'>
+          <div className='reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10'>
             {/* Header Cell */}
             <div className='p-8 lg:p-12 space-y-4'>
               <h2 className='text-4xl font-accent text-foreground tracking-wide'>
@@ -190,7 +283,7 @@ export default function Home() {
       </section>
 
       {/* Metrics & Impact Section */}
-      <section className='px-5 lg:px-10 py-16 rounded-3xl bg-navy/80 backdrop-blur-sm relative mx-auto border border-primary/50 max-w-7xl overflow-hidden'>
+      <section className='reveal px-5 lg:px-10 py-16 rounded-3xl bg-navy/80 backdrop-blur-sm relative mx-auto border border-primary/50 max-w-7xl overflow-hidden'>
         {/* Top Fade Mask to blend with previous section */}
         <div className='absolute top-0 left-0 w-full h-20 bg-linear-to-b from-background via-background/50 to-transparent z-20 pointer-events-none' />
 
@@ -202,7 +295,7 @@ export default function Home() {
 
         <div className='max-w-7xl mx-auto relative z-10'>
           <div className='text-center space-y-6 mb-20'>
-            <h2 className='text-4xl font-accent text-foreground tracking-wide'>
+            <h2 className='reveal-header text-4xl font-accent text-foreground tracking-wide'>
               No Guessworks
             </h2>
             <p className='text-2xl md:text-3xl lg:text-4xl leading-tight text-foreground max-w-3xl mx-auto'>
@@ -213,7 +306,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+          <div className='reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
             {[
               {
                 metric: '$30,000',
@@ -278,15 +371,15 @@ export default function Home() {
       </section>
 
       {/* Case Studies Section */}
-      <section className='px-5 lg:px-10 py-32 '>
+      <section className='reveal px-5 lg:px-10 py-16 '>
         <div className='max-w-7xl mx-auto space-y-20'>
           <div className='text-center'>
-            <h2 className='text-5xl font-accent text-foreground tracking-wide'>
+            <h2 className='reveal-header text-5xl font-accent text-foreground tracking-wide'>
               Case Studies
             </h2>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
+          <div className='reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-10'>
             {[1, 2, 3, 4].map((i) => (
               <Card
                 key={i}
@@ -335,15 +428,15 @@ export default function Home() {
       </section>
 
       {/* More Design Projects Section */}
-      <section className='px-5 lg:px-10 py-32 bg-background'>
+      <section className='reveal px-5 lg:px-10 py-16 bg-background'>
         <div className='max-w-7xl mx-auto space-y-16'>
           <div className='text-center'>
-            <h2 className='text-4xl font-accent text-foreground tracking-wide'>
+            <h2 className='reveal-header text-4xl font-accent text-foreground tracking-wide'>
               More Design Projects
             </h2>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          <div className='reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
             {[1, 2, 3].map((i) => (
               <Card
                 key={i}
@@ -385,7 +478,7 @@ export default function Home() {
       </section>
 
       {/* Meet Me Section */}
-      <section className='relative py-32 px-5 lg:px-10 overflow-hidden bg-background'>
+      <section className='reveal relative py-16 px-5 lg:px-10 overflow-hidden bg-background'>
         {/* Full-Width Atmospheric Glow */}
         <div className='absolute inset-0 pointer-events-none'>
           <div className='absolute inset-0 bg-linear-to-r from-primary/30 via-primary/20 to-primary/15 blur-[150px]' />
@@ -398,7 +491,7 @@ export default function Home() {
         <div className='absolute bottom-0 left-0 w-full h-10 bg-linear-to-t from-background via-background/50 to-transparent z-20 pointer-events-none' />
 
         <div className='max-w-7xl mx-auto relative py-20 z-10'>
-          <div className='flex flex-col lg:flex-row items-center gap-16 lg:gap-24'>
+          <div className='reveal-stagger flex flex-col lg:flex-row items-center gap-16 lg:gap-24'>
             {/* Bio Content */}
             <div className='flex-1 space-y-8'>
               <div className='space-y-4'>

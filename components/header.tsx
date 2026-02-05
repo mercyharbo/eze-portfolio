@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export const Header = () => {
   return (
-    <header className='fixed top-0 left-0 w-full z-50 px-5 lg:px-10 py-4 flex items-center justify-between bg-background backdrop-blur-md'>
+    <header className='fixed top-0 left-0 w-full z-50 px-5 lg:px-10 py-6 flex items-center justify-between bg-background backdrop-blur-md'>
       <div className='flex items-center gap-4'>
         <div className='relative'>
           <div className='size-9 rounded-full border border-primary/50 flex items-center justify-center bg-background p-2.5'>
