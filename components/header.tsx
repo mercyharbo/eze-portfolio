@@ -9,20 +9,21 @@ export const Header = () => {
           <div className='size-9 rounded-full border border-primary/50 flex items-center justify-center bg-background p-2.5'>
             <Image
               src='/svg/Vector.svg'
-              alt='Logo'
+              alt='Chibueze Umechukwu Logo'
               width={20}
               height={20}
               className='brightness-0 invert'
             />
           </div>
         </div>
-        <h1 className='text-xl font-medium tracking-tight text-foreground'>
+        <span className='text-xl font-medium tracking-tight text-foreground'>
           Chibueze Umechukwu
-        </h1>
+        </span>
       </div>
 
       <Button
         variant='ghost'
+        aria-label='Send a message'
         className='relative h-11 rounded-full px-8 bg-background text-foreground transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] group'
       >
         <div className='absolute inset-0 rounded-full p-px bg-linear-to-r from-primary via-transparent to-primary'>
