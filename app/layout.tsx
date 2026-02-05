@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Albert_Sans, Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+
+const albertSans = Albert_Sans({
+  variable: '--font-albert-sans',
+  subsets: ['latin'],
+})
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang='en' className='dark scroll-smooth'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground selection:bg-primary/30 selection:text-primary`}
+        className={`${geistSans.variable} ${geistMono.variable} ${albertSans.variable} antialiased bg-background text-foreground selection:bg-primary/30 selection:text-primary`}
       >
         <Header />
         <main id='main-content' className='min-h-screen pt-20'>

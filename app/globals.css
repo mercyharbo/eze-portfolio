@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
@@ -11,6 +12,7 @@
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-geist-mono);
   --font-body: var(--font-geist-mono);
+  --font-heading: 'Albert Sans', sans-serif;
   --font-accent: 'Rancho', cursive;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
