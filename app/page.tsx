@@ -54,60 +54,81 @@ export default function Home() {
         },
       )
 
-      // Scroll animations for section reveals
+      // Set initial states to prevent FOUC
+      gsap.set('.reveal, .reveal-header, .reveal-stagger > *', {
+        opacity: 0,
+        y: 60,
+      })
+
+      // Scroll animations for section reveals with enhanced effects
       gsap.utils.toArray<HTMLElement>('.reveal').forEach((el) => {
+        gsap.to(el, {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            end: 'top 60%',
+            scrub: 0.5,
+            once: false,
+          },
+        })
+      })
+
+      // Header-specific reveals with subtle scale
+      gsap.utils.toArray<HTMLElement>('.reveal-header').forEach((el) => {
         gsap.fromTo(
           el,
-          { y: 50, opacity: 0 },
+          {
+            y: 40,
+            opacity: 0,
+            scale: 0.95,
+          },
           {
             y: 0,
             opacity: 1,
+            scale: 1,
             duration: 1,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: el,
-              start: 'top 85%',
-              toggleActions: 'restart none restart none',
+              start: 'top 95%',
+              toggleActions: 'play none none reverse',
             },
           },
         )
       })
 
-      // Header-specific reveals
-      gsap.utils.toArray<HTMLElement>('.reveal-header').forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'restart none restart none',
-            },
-          },
-        )
-      })
-
-      // Staggered grid reveals
+      // Staggered grid reveals with enhanced stagger and scale
       gsap.utils.toArray<HTMLElement>('.reveal-stagger').forEach((section) => {
-        const children = section.children
+        const children = Array.from(section.children) as HTMLElement[]
+
         gsap.fromTo(
           children,
-          { y: 40, opacity: 0 },
+          {
+            y: 60,
+            opacity: 0,
+            scale: 0.9,
+            rotateX: 10,
+          },
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: 'power3.out',
+            scale: 1,
+            rotateX: 0,
+            duration: 1,
+            stagger: {
+              amount: 0.6,
+              from: 'start',
+              ease: 'power2.inOut',
+            },
+            ease: 'power4.out',
             scrollTrigger: {
               trigger: section,
               start: 'top 85%',
-              toggleActions: 'restart none restart none',
+              toggleActions: 'play none none reverse',
             },
           },
         )
@@ -351,7 +372,7 @@ export default function Home() {
             ].map((item, i) => (
               <div
                 key={i}
-                className='p-8 rounded-3xl bg-linear-to-br from-primary/10 to-background/50 border border-white/5 backdrop-blur-md flex flex-col justify-between h-48 group hover:from-primary/20 hover:to-background transition-all duration-500'
+                className='p-8 rounded-3xl bg-linear-to-br from-primary/10 to-background/50 border border-white/5 backdrop-blur-md flex flex-col justify-between h-48 group hover:from-primary/20 hover:to-background'
               >
                 <div className='flex justify-between items-start'>
                   <span className='text-3xl text-foreground tracking-tight'>
@@ -383,7 +404,7 @@ export default function Home() {
             {[1, 2, 3, 4].map((i) => (
               <Card
                 key={i}
-                className='group p-2 bg-navy border border-primary hover:border-primary/60 transition-all duration-500 flex flex-col shadow-none h-auto overflow-hidden'
+                className='group p-2 bg-navy border border-primary hover:border-primary/60 flex flex-col shadow-none h-auto overflow-hidden'
               >
                 <CardHeader className='p-0'>
                   {/* Project Image Placeholder */}
@@ -440,7 +461,7 @@ export default function Home() {
             {[1, 2, 3].map((i) => (
               <Card
                 key={i}
-                className='group bg-navy/50 p-2 border border-primary/20 hover:border-primary/40 transition-all duration-300 flex flex-col shadow-none gap-0 overflow-hidden h-auto'
+                className='group bg-navy/50 p-2 border border-primary/20 hover:border-primary/40 flex flex-col shadow-none gap-0 overflow-hidden h-auto'
               >
                 <CardHeader className='p-0 flex flex-col gap-2'>
                   {/* Visual Placeholder */}
