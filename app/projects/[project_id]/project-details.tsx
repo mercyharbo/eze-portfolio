@@ -8,14 +8,15 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   ArrowLeft,
+  ArrowRightLeft,
   ArrowUpRight,
-  Box,
-  CircleDollarSign,
+  IdCard,
   Users,
+  Wallet,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -28,6 +29,7 @@ export interface ProjectDetailsProps {
 export function ProjectDetails({ projectId }: ProjectDetailsProps) {
   const project = PROJECTS.find((p) => p.id === projectId)
   const container = useRef<HTMLDivElement>(null)
+  const [activeSection, setActiveSection] = useState('hero')
 
   useGSAP(
     () => {
@@ -71,6 +73,31 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
     { scope: container },
   )
 
+  // Scroll spy to track active section
+  useEffect(() => {
+    if (!project) return
+
+    const sectionIds = ['hero', 'metrics', ...project.sections.map((s) => s.id)]
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 },
+    )
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [project])
+
   if (!project) {
     return (
       <div className='min-h-screen flex items-center justify-center text-white'>
@@ -85,41 +112,14 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
   }
 
   const navItems = [
-    { id: 'hero', label: 'Title' },
+    { id: 'hero', label: 'Home' },
     ...(project.metrics?.length ? [{ id: 'metrics', label: 'Metrics' }] : []),
-    ...(project.overview || project.challenge || project.scope?.length
-      ? [
-          {
-            id: 'overview',
-            label: project.sectionTitles?.overview || 'Overview',
-          },
-        ]
-      : []),
-    ...(project.problem?.statement || project.problem?.objective
-      ? [{ id: 'problem', label: project.sectionTitles?.problem || 'Problem' }]
-      : []),
-    ...(project.research?.description || project.research?.insights?.length
-      ? [
-          {
-            id: 'research',
-            label: project.sectionTitles?.research || 'Research',
-          },
-        ]
-      : []),
-    ...(project.goals?.length
-      ? [{ id: 'goals', label: project.sectionTitles?.goals || 'Goals' }]
-      : []),
-    ...(project.images?.length > 1 || project.sectionImage
-      ? [{ id: 'ui-designs', label: project.sectionTitles?.ui || 'UI Designs' }]
-      : []),
-    ...(project.outcome || project.userTesting
-      ? [
-          {
-            id: 'outcomes',
-            label: project.sectionTitles?.outcome || 'Outcomes',
-          },
-        ]
-      : []),
+    ...project.sections.map((section) => ({
+      id: section.id,
+      label:
+        section.title ||
+        section.id.charAt(0).toUpperCase() + section.id.slice(1),
+    })),
   ]
 
   return (
@@ -130,7 +130,7 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
         className='px-5 lg:px-10 space-y-10 relative overflow-hidden'
       >
         {/* Navigation */}
-        <div className='flex flex-col sm:flex-row items-center justify-between gap-6 mb-16 lg:mb-24 reveal-up'>
+        <div className='flex flex-col sm:flex-row items-center justify-between gap-6 reveal-up'>
           <Button
             asChild
             className='rounded-full bg-gray-800 text-white h-12 w-full sm:w-40'
@@ -157,7 +157,7 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
 
         {/* Project Title & Metadata */}
         <div className='space-y-8 lg:space-y-12'>
-          <h1 className='text-3xl md:text-5xl/snug lg:text-6xl/snug w-full font-medium lg:max-w-5xl font-heading uppercase'>
+          <h1 className='text-3xl md:text-4xl/snug lg:text-6xl/snug w-full font-medium lg:max-w-7xl font-heading Capitialize'>
             {project.title}{' '}
             {project.subTitle && <span className=''>– {project.subTitle}</span>}
           </h1>
@@ -199,8 +199,8 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
         {/* Cover Image */}
         <div className='relative w-full aspect-video rounded-3xl overflow-hidden border border-white/5 bg-navy reveal-image'>
           <Image
-            src={project.images[0].url}
-            alt={project.images[0].alt}
+            src={project.heroImage}
+            alt={project.title}
             fill
             className='object-cover'
             priority
@@ -211,31 +211,34 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
         {project.metrics && project.metrics.length > 0 && (
           <div
             id='metrics'
-            className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full lg:max-w-5xl reveal-section translate-y-20 opacity-0'
+            className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full lg:max-w-7xl reveal-section translate-y-20 opacity-0'
           >
             {project.metrics.map((metric, i) => (
               <Card
                 key={i}
-                className='shadow-none bg-linear-to-br from-primary/4  to-background border border-white/10 backdrop-blur-xl group hover:border-primary/30 transition-all duration-500 rounded-4xl p-4 h-full flex flex-col justify-between'
+                className='shadow-none bg-linear-to-br from-white/5 to-background border border-white/10 backdrop-blur-xl group hover:border-primary/30 transition-all duration-500 rounded-3xl p-6 h-full flex flex-col justify-between'
               >
                 <CardHeader className='flex-row flex justify-between items-start p-0'>
-                  <span className='text-3xl tracking-tight text-white'>
+                  <span className='text-2xl lg:text-3xl tracking-tight text-white font-medium leading-none'>
                     {metric.value}
                   </span>
-                  <div className='size-11 rounded-full bg-white/3 flex items-center justify-center border border-white/10 group-hover:border-primary/40 transition-colors duration-500'>
+                  <div className='size-11 rounded-full bg-linear-to-br from-white/10 to-transparent flex items-center justify-center border border-white/10 group-hover:border-primary/40 transition-colors duration-500 shrink-0'>
                     {metric.type === 'revenue' && (
-                      <CircleDollarSign className='size-5 text-primary' />
+                      <Wallet className='size-5 text-primary' />
                     )}
-                    {metric.type === 'users' && (
+                    {metric.type === 'users' && i === 2 && (
+                      <IdCard className='size-5 text-primary' />
+                    )}
+                    {metric.type === 'users' && i !== 2 && (
                       <Users className='size-5 text-primary' />
                     )}
                     {metric.type === 'orders' && (
-                      <Box className='size-5 text-primary' />
+                      <ArrowRightLeft className='size-5 text-primary' />
                     )}
                   </div>
                 </CardHeader>
                 <CardContent className='p-0'>
-                  <p className='text-base text-foreground leading-relaxed max-w-[90%]'>
+                  <p className='text-sm text-foreground/80 leading-relaxed'>
                     {metric.label}
                   </p>
                 </CardContent>
@@ -245,248 +248,462 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
         )}
       </section>
 
-      <div className='grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-24 px-5 lg:px-10 pt-20 reveal-section opacity-0 translate-y-10'>
-        {/* Sidebar Navigation */}
-        <aside className='hidden lg:block relative '>
+      <div
+        className={`grid lg:grid-cols-[300px_1fr] gap-12 lg:gap-24 px-5 lg:px-10 pt-20 h-auto`}
+      >
+        {/* Sidebar Navigation - Only for Classic Layout */}
+        <aside className='hidden lg:block relative h-full'>
           {/* Vertical Split Line */}
-          <div className='absolute right-0 top-0 bottom-0 w-px bg-linear-to-b from-transparent via-primary h-68 to-transparent' />
+          <div className='absolute -right-10 top-0 bottom-0 w-px bg-linear-to-b from-transparent via-primary h-68 to-transparent' />
 
           <div className='sticky top-32 flex flex-col gap-10'>
             <nav className='flex flex-col gap-5'>
-              {navItems.map((item, idx) => (
-                <Link
-                  key={item.id}
-                  href={`#${item.id}`}
-                  className={`group relative flex items-center h-12 transition-all duration-300 ${
-                    idx === 0 ? 'text-white' : 'text-white hover:text-white/90'
-                  }`}
-                >
-                  {idx === 0 && (
-                    <>
-                      {/* Pill Background with Gradient Border Effect */}
-                      <div className='absolute inset-0 rounded-full border border-primary/50 [mask-image:linear-gradient(to_right,white_40%,transparent_90%)] bg-linear-to-r from-primary/10 to-transparent -z-10' />
-                      {/* Glow Effect */}
-                      <div className='absolute inset-0 w-24 bg-primary/5 blur-xl -z-20' />
-                    </>
-                  )}
-
-                  <div
-                    className={`flex items-center gap-4 ${
-                      idx === 0 ? 'pl-8' : 'pl-12'
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id
+                return (
+                  <Link
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className={`group relative flex items-center h-12 transition-all duration-300 ${
+                      isActive
+                        ? 'text-white'
+                        : 'text-white/60 hover:text-white/90'
                     }`}
                   >
-                    {idx === 0 && (
-                      <span className='text-primary text-xl translate-y-px'>
-                        →
-                      </span>
+                    {isActive && (
+                      <>
+                        {/* Pill Background with Gradient Border Effect */}
+                        <div className='absolute inset-0 rounded-full border border-primary/50 mask-[linear-gradient(to_right,white_40%,transparent_90%)] bg-linear-to-r from-primary/10 to-transparent -z-10' />
+                        {/* Glow Effect */}
+                        <div className='absolute inset-0 w-24 bg-primary/5 blur-xl -z-20' />
+                      </>
                     )}
-                    <span className='text-sm tracking-wide'>{item.label}</span>
-                  </div>
-                </Link>
-              ))}
+
+                    <div
+                      className={`flex items-center gap-4 ${
+                        isActive ? 'pl-8' : 'pl-12'
+                      }`}
+                    >
+                      {isActive && (
+                        <span className='text-primary text-xl translate-y-px'>
+                          →
+                        </span>
+                      )}
+                      <span className='text-sm tracking-wide'>
+                        {item.label}
+                      </span>
+                    </div>
+                  </Link>
+                )
+              })}
             </nav>
           </div>
         </aside>
 
-        {/* Main Content */}
-        <div className='space-y-20'>
-          {/* Project Overview */}
-          {(project.overview || project.challenge || project.scope?.length) && (
-            <section
-              id='overview'
-              className='space-y-12 lg:space-y-16 reveal-section opacity-0 translate-y-10'
-            >
-              <div className='space-y-6 lg:space-y-8 max-w-4xl'>
-                <h2 className='text-3xl md:text-5xl font-medium font-heading'>
-                  {project.sectionTitles?.overview || 'Project Overview'}
-                </h2>
-                <div className='space-y-4 lg:space-y-6 text-base lg:text-lg text-foreground leading-relaxed font-heading '>
-                  {project.overview && <p>{project.overview}</p>}
-                  {project.challenge && <p>{project.challenge}</p>}
-                </div>
-              </div>
-
-              {/* Project Scope */}
-              {project.scope && project.scope.length > 0 && (
-                <div className='space-y-8'>
-                  <h3 className='text-3xl font-medium font-heading'>
-                    Project Scope
-                  </h3>
-                  <ul className='grid gap-4'>
-                    {project.scope.map((item, i) => (
-                      <li
-                        key={i}
-                        className='flex items-center gap-4 text-foregorund group'
-                      >
-                        <span className='size-1.5 rounded-full bg-white group-hover:bg-primary transition-colors' />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </section>
-          )}
-
-          {(project.overview || project.challenge) && (
-            <div className='w-full h-px bg-linear-to-r from-primary to-transparent' />
-          )}
-
-          {/* Problem Statement */}
-          {(project.problem?.statement || project.problem?.objective) && (
-            <section
-              id='problem'
-              className='space-y-8 lg:space-y-12 max-w-4xl reveal-section opacity-0 translate-y-10'
-            >
-              <div className='space-y-6'>
-                <h2 className='text-3xl md:text-5xl font-medium font-heading'>
-                  {project.sectionTitles?.problem || 'Problem Statement'}
-                </h2>
-                {project.problem?.statement && (
-                  <p className='text-base lg:text-lg text-foreground leading-relaxed font-heading'>
-                    {project.problem.statement}
-                  </p>
-                )}
-              </div>
-              {project.problem?.objective && (
-                <p className='text-base lg:text-lg text-foreground leading-relaxed font-heading'>
-                  {project.problem.objective}
-                </p>
-              )}
-            </section>
-          )}
-
-          {/* Research & Insights */}
-          {(project.research?.description ||
-            project.research?.insights?.length) && (
-            <section
-              id='research'
-              className='space-y-12 max-w-4xl reveal-section opacity-0 translate-y-10'
-            >
-              <div className='space-y-6'>
-                <h2 className='text-4xl md:text-5xl font-medium font-heading'>
-                  {project.sectionTitles?.research || 'Research & Insights'}
-                </h2>
-                {project.research?.description && (
-                  <p className='text-lg text-foreground leading-relaxed font-heading'>
-                    {project.research.description}
-                  </p>
-                )}
-              </div>
-
-              {project.research?.insights &&
-                project.research.insights.length > 0 && (
-                  <div className='space-y-6'>
-                    <p className='text-white font-medium'>
-                      Key insights included:
-                    </p>
-                    <ol className='space-y-6'>
-                      {project.research.insights.map((insight, i) => (
-                        <li
-                          key={i}
-                          className='flex gap-4 text-foreground leading-relaxed'
-                        >
-                          <span className='text-primary font-medium shrink-0'>
-                            {i + 1}.
-                          </span>
-                          {insight}
-                        </li>
+        <div className='space-y-20 flex-1'>
+          {project.sections.map((section) => (
+            <div key={section.id} className='space-y-20'>
+              {/* Dynamic Section Rendering */}
+              <section
+                id={section.id}
+                className='space-y-12 lg:space-y-16 reveal-section opacity-0 translate-y-10'
+              >
+                {/* Section Images Rendering (Top Position - Before Title) */}
+                {section.imagePosition === 'top' &&
+                  section.images &&
+                  section.images.length > 0 && (
+                    <div className='flex flex-col gap-12 lg:gap-24 -mx-5 lg:mx-0'>
+                      {section.images.map((image, i) => (
+                        <div key={i} className='space-y-8'>
+                          <Image
+                            src={image.url}
+                            alt={image.alt}
+                            width={1920}
+                            height={1080}
+                            className='w-full h-auto rounded-3xl lg:rounded-4xl'
+                          />
+                          {image.caption && (
+                            <div className='max-w-xl px-5 lg:px-0'>
+                              <p className='text-lg text-foreground leading-relaxed'>
+                                {image.caption}
+                              </p>
+                            </div>
+                          )}
+                        </div>
                       ))}
-                    </ol>
-                  </div>
+                    </div>
+                  )}
+
+                {/* Section Title */}
+                {section.title && section.type !== 'ui-designs' && (
+                  <h2 className='text-3xl md:text-5xl font-medium font-heading'>
+                    {section.title}
+                  </h2>
                 )}
-            </section>
-          )}
 
-          {/* Design Goals */}
-          {project.goals && project.goals.length > 0 && (
-            <section
-              id='goals'
-              className='space-y-8 lg:space-y-12 max-w-4xl reveal-section opacity-0 translate-y-10'
-            >
-              <h2 className='text-3xl md:text-5xl font-medium font-heading'>
-                {project.sectionTitles?.goals || 'Design Goals'}
-              </h2>
-              <div className='space-y-6'>
-                <p className='text-base lg:text-foreground'>
-                  The design aimed to achieve three key objectives:
-                </p>
-                <ol className='space-y-4 lg:space-y-6'>
-                  {project.goals.map((goal, i) => (
-                    <li
-                      key={i}
-                      className='flex gap-4 text-sm lg:text-base text-foreground leading-relaxed'
-                    >
-                      <span className='text-primary font-medium shrink-0'>
-                        {i + 1}.
-                      </span>
-                      {goal}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </section>
-          )}
-
-          {project.goals && project.goals.length > 0 && (
-            <div className='w-full h-px bg-linear-to-r from-primary to-transparent' />
-          )}
-
-          {/* UI Designs */}
-          {(project.images?.length > 1 || project.sectionImage) && (
-            <section
-              id='ui-designs'
-              className='space-y-16 reveal-section opacity-0 translate-y-10'
-            >
-              {project.sectionImage && (
-                <Image
-                  src={project.sectionImage}
-                  alt='Section Title'
-                  width={1920}
-                  height={1080}
-                  className='w-full h-auto'
-                  priority
-                />
-              )}
-
-              <div className='grid gap-12'>
-                {project.images.slice(1).map((image, i) => (
-                  <div key={i} className='space-y-8'>
-                    <Image
-                      src={image.url}
-                      alt={image.alt}
-                      width={1920}
-                      height={1080}
-                      className='w-full h-auto'
-                    />
-                    {image.caption && (
-                      <div className='max-w-xl self-end space-y-4'>
-                        <p className='text-lg text-foreground leading-relaxed'>
-                          {image.caption}
+                {/* Section Content - Based on Type */}
+                <div className='space-y-8 max-w-4xl'>
+                  {/* Basic Content (Overview, Problem, Outcome) */}
+                  {(section.type === 'overview' ||
+                    section.type === 'problem' ||
+                    section.type === 'outcome') && (
+                    <div className='space-y-6 text-base lg:text-lg text-foreground leading-relaxed font-heading'>
+                      {section.highlight && (
+                        <p className='text-lg lg:text-xl text-white font-medium leading-relaxed pl-6 border-l-2 border-primary/30 italic'>
+                          {section.highlight}
                         </p>
+                      )}
+                      {Array.isArray(section.content) ? (
+                        section.content.map((p, i) => <p key={i}>{p}</p>)
+                      ) : (
+                        <p>{section.content}</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Scope List */}
+                  {section.type === 'scope' && section.content && (
+                    <ul className='grid gap-4'>
+                      {Array.isArray(section.content) &&
+                        section.content.map((item, i) => (
+                          <li
+                            key={i}
+                            className='flex items-center gap-4 text-foreground group'
+                          >
+                            <span className='size-1.5 rounded-full bg-white group-hover:bg-primary transition-colors' />
+                            {item}
+                          </li>
+                        ))}
+                    </ul>
+                  )}
+
+                  {/* Numbered Sections (Research, Goals) */}
+                  {(section.type === 'research' ||
+                    section.type === 'goals') && (
+                    <div className='space-y-8'>
+                      {section.content && (
+                        <div
+                          className={`space-y-6 ${section.type === 'research' ? 'text-base font-normal' : 'text-base lg:text-lg font-heading'} text-foreground leading-relaxed`}
+                        >
+                          {Array.isArray(section.content) ? (
+                            section.content.map((p, i) => <p key={i}>{p}</p>)
+                          ) : (
+                            <p>{section.content}</p>
+                          )}
+                        </div>
+                      )}
+                      {section.items && (
+                        <div
+                          className={`grid grid-cols-1 ${section.type === 'research' ? 'gap-4' : 'gap-8 lg:gap-12'}`}
+                        >
+                          {section.items.map((item, i) => (
+                            <div
+                              key={i}
+                              className='flex gap-4 items-start group'
+                            >
+                              {section.listType === 'bullets' ? (
+                                <div className='size-1.5 rounded-full bg-foreground/60 mt-3' />
+                              ) : (
+                                <span
+                                  className={`text-primary ${section.itemTitleWeight === 'normal' ? 'font-normal' : section.itemTitleWeight === 'medium' ? 'font-medium' : section.type === 'research' ? 'font-normal' : 'font-medium'} text-base shrink-0`}
+                                >
+                                  {i + 1}.
+                                </span>
+                              )}
+                              <div className='flex-1'>
+                                <p
+                                  className={`text-foreground leading-relaxed ${section.type === 'research' ? 'text-base' : 'text-base lg:text-lg'}`}
+                                >
+                                  {item.title &&
+                                    item.title !== (i + 1).toString() && (
+                                      <span
+                                        className={`${section.itemTitleWeight === 'normal' ? 'font-normal' : section.itemTitleWeight === 'medium' ? 'font-medium' : section.type === 'research' ? 'font-normal' : 'font-medium'} text-white italic`}
+                                      >
+                                        {item.title}
+                                      </span>
+                                    )}
+                                  {item.title &&
+                                    item.body &&
+                                    !Array.isArray(item.body) &&
+                                    ': '}
+                                  {item.body && !Array.isArray(item.body) && (
+                                    <span className='text-foreground'>
+                                      {item.body}
+                                    </span>
+                                  )}
+                                </p>
+                                {item.body && Array.isArray(item.body) && (
+                                  <ul className='space-y-3 mt-3'>
+                                    {item.body.map((bp, j) => (
+                                      <li
+                                        key={j}
+                                        className='flex items-start gap-3'
+                                      >
+                                        <span className='mt-2.5 size-1.5 shrink-0 rounded-full bg-foreground/60' />
+                                        <span className='text-foreground'>
+                                          {bp}
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Workflow Section (Vertical stack, bold inline title) */}
+                  {section.type === 'workflow' && (
+                    <div className='space-y-4'>
+                      {section.content && (
+                        <div className='text-base lg:text-lg text-foreground leading-relaxed space-y-3'>
+                          {Array.isArray(section.content) ? (
+                            section.content.map((p, i) => (
+                              <p
+                                key={i}
+                                className={
+                                  i === 0 && section.id === 'development'
+                                    ? 'font-bold'
+                                    : ''
+                                }
+                              >
+                                {p}
+                              </p>
+                            ))
+                          ) : (
+                            <p>{section.content}</p>
+                          )}
+                        </div>
+                      )}
+                      {section.items &&
+                        section.items.map((item, i) => (
+                          <div key={i} className='flex gap-4 items-start'>
+                            {section.listType === 'bullets' ? (
+                              <div className='size-1.5 rounded-full bg-foreground/60 mt-3' />
+                            ) : section.listType === 'numbered' ? (
+                              <span className='text-white font-medium text-base lg:text-lg shrink-0'>
+                                {i + 1}.
+                              </span>
+                            ) : null}
+                            <div className='flex-1 space-y-2'>
+                              {/* Numbered lists: inline title + body with dash */}
+                              {section.listType === 'numbered' ? (
+                                <p className='text-base lg:text-lg leading-relaxed'>
+                                  {item.title && (
+                                    <span className='font-medium text-white'>
+                                      {item.title}
+                                    </span>
+                                  )}
+                                  {item.title &&
+                                    item.body &&
+                                    !Array.isArray(item.body) &&
+                                    ' – '}
+                                  {item.body && !Array.isArray(item.body) && (
+                                    <span className='text-foreground'>
+                                      {item.body}
+                                    </span>
+                                  )}
+                                </p>
+                              ) : section.itemTitleWeight === 'bold' ? (
+                                /* Bold title weight: inline title:body format */
+                                <p className='text-base lg:text-lg leading-relaxed'>
+                                  {item.title && (
+                                    <span className='font-bold text-white'>
+                                      {item.title}:
+                                    </span>
+                                  )}{' '}
+                                  {item.body && !Array.isArray(item.body) && (
+                                    <span className='text-foreground'>
+                                      {item.body}
+                                    </span>
+                                  )}
+                                </p>
+                              ) : (
+                                /* Non-numbered, non-bold: title and body on separate lines */
+                                <>
+                                  {item.title && (
+                                    <p
+                                      className={`${section.itemTitleWeight === 'normal' ? 'font-normal' : 'font-medium'} text-white text-base lg:text-lg`}
+                                    >
+                                      {item.title}
+                                    </p>
+                                  )}
+                                  {item.body && !Array.isArray(item.body) && (
+                                    <p className='text-base lg:text-lg text-foreground leading-relaxed'>
+                                      {item.body}
+                                    </p>
+                                  )}
+                                </>
+                              )}
+                              {item.body && Array.isArray(item.body) && (
+                                <ul className='space-y-4'>
+                                  {item.body.map((bp, j) => (
+                                    <li
+                                      key={j}
+                                      className='flex items-start gap-3'
+                                    >
+                                      <span className='mt-2.5 size-1.5 shrink-0 rounded-full bg-foreground/60' />
+                                      <span className='text-foreground'>
+                                        {bp}
+                                      </span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      {section.postContent && (
+                        <div className='text-base lg:text-lg text-foreground leading-relaxed pt-4 border-t border-white/5 mt-8'>
+                          {Array.isArray(section.postContent) ? (
+                            section.postContent.map((p, i) => (
+                              <p key={i}>{p}</p>
+                            ))
+                          ) : (
+                            <p>{section.postContent}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Insights Section (Bulleted/Numbered list) */}
+                  {section.type === 'insights' && (
+                    <div className='space-y-8'>
+                      {section.content && (
+                        <div className='text-base lg:text-lg text-foreground leading-relaxed space-y-4'>
+                          {Array.isArray(section.content) ? (
+                            section.content.map((p, i) => <p key={i}>{p}</p>)
+                          ) : (
+                            <p>{section.content}</p>
+                          )}
+                        </div>
+                      )}
+                      {section.highlight && (
+                        <p className='text-lg lg:text-xl text-white font-medium leading-relaxed pl-6 border-l-2 border-primary/30'>
+                          {section.highlight}
+                        </p>
+                      )}
+                      {section.items && (
+                        <ul className='space-y-4'>
+                          {section.items.map((item, i) => (
+                            <li
+                              key={i}
+                              className='flex items-start gap-3 text-base lg:text-lg leading-relaxed'
+                            >
+                              {section.listType === 'numbered' ? (
+                                <span className='text-white font-medium shrink-0'>
+                                  {i + 1}.
+                                </span>
+                              ) : (
+                                <span className='mt-2.5 size-1.5 shrink-0 rounded-full bg-foreground/60' />
+                              )}
+                              <p>
+                                {item.title && (
+                                  <span
+                                    className={`${section.itemTitleWeight === 'normal' ? 'font-normal' : 'font-medium'} text-white`}
+                                  >
+                                    {item.title}
+                                  </span>
+                                )}
+                                {item.title &&
+                                  item.body &&
+                                  !Array.isArray(item.body) &&
+                                  ': '}
+                                {item.body && !Array.isArray(item.body) && (
+                                  <span className='text-foreground'>
+                                    {item.body}
+                                  </span>
+                                )}
+                              </p>
+                              {item.body && Array.isArray(item.body) && (
+                                <ul className='space-y-3'>
+                                  {item.body.map((bp, j) => (
+                                    <li
+                                      key={j}
+                                      className='flex items-start gap-3'
+                                    >
+                                      <span className='mt-2.5 size-1.5 shrink-0 rounded-full bg-foreground/60' />
+                                      <span className='text-foreground'>
+                                        {bp}
+                                      </span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {section.postContent && (
+                        <div className='text-base lg:text-lg text-foreground leading-relaxed space-y-4'>
+                          {Array.isArray(section.postContent) ? (
+                            section.postContent.map((p, i) => (
+                              <p key={i}>{p}</p>
+                            ))
+                          ) : (
+                            <p>{section.postContent}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* UI Designs Section Header (Special case for project.sectionImage) */}
+                  {section.type === 'ui-designs' && project.sectionImage && (
+                    <div className='-mx-5 lg:mx-0'>
+                      <Image
+                        src={project.sectionImage}
+                        alt='Section Title'
+                        width={1920}
+                        height={1080}
+                        className='w-full h-auto'
+                        priority
+                      />
+                    </div>
+                  )}
+
+                  {/* Generic Images Rendering for any section (Bottom Position by default) */}
+                  {section.imagePosition !== 'top' &&
+                    section.images &&
+                    section.images.length > 0 && (
+                      <div
+                        className={`flex flex-col gap-12 lg:gap-24 -mx-5 lg:mx-0 ${section.type === 'scope' || section.type === 'research' || section.type === 'goals' || section.type === 'workflow' || section.type === 'insights' ? 'mt-12 lg:mt-24' : ''}`}
+                      >
+                        {section.images.map((image, i) => (
+                          <div key={i} className='space-y-8'>
+                            <Image
+                              src={image.url}
+                              alt={image.alt}
+                              width={1920}
+                              height={1080}
+                              className='w-full h-auto rounded-3xl lg:rounded-4xl'
+                            />
+                            {image.caption && (
+                              <div className='max-w-xl px-5 lg:px-0'>
+                                <p className='text-lg text-foreground leading-relaxed'>
+                                  {image.caption}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        ))}
                       </div>
                     )}
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
+                </div>
+              </section>
 
-          {/* Outcome */}
-          {(project.outcome || project.userTesting) && (
-            <section
-              id='outcomes'
-              className='space-y-8 lg:space-y-12 max-w-4xl reveal-section opacity-0 translate-y-10'
-            >
-              <h2 className='text-3xl md:text-5xl font-medium font-heading'>
-                {project.sectionTitles?.outcome || 'Outcome'}
-              </h2>
-              <div className='space-y-4 lg:space-y-6 text-base lg:text-lg text-foreground leading-relaxed'>
-                {project.outcome && <p>{project.outcome}</p>}
-                {project.userTesting && <p>{project.userTesting}</p>}
-              </div>
-            </section>
-          )}
+              {/* Dynamic Separator */}
+              {section.type !== 'outcome' &&
+                section.type !== 'ui-designs' &&
+                section.id !== 'values' && (
+                  <div className='w-full h-px bg-linear-to-r from-primary to-transparent opacity-30' />
+                )}
+            </div>
+          ))}
         </div>
       </div>
     </div>

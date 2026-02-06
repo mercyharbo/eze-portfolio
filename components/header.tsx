@@ -1,12 +1,13 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const Header = () => {
   return (
     <header className='fixed top-0 left-0 w-full z-50 px-5 lg:px-10 py-6 flex items-center justify-between bg-background backdrop-blur-md'>
-      <div className='flex items-center gap-4'>
+      <Link href='/' className='flex items-center gap-4 group'>
         <div className='relative'>
-          <div className='size-9 rounded-full border border-primary/50 flex items-center justify-center bg-background p-2.5'>
+          <div className='size-9 rounded-full border border-primary/50 flex items-center justify-center bg-background p-2.5 transition-colors group-hover:border-primary'>
             <Image
               src='/svg/Vector.svg'
               alt='Chibueze Umechukwu Logo'
@@ -16,10 +17,10 @@ export const Header = () => {
             />
           </div>
         </div>
-        <span className='text-xl font-medium tracking-tight text-foreground'>
+        <span className='text-xl font-medium tracking-tight text-foreground transition-colors group-hover:text-primary'>
           Chibueze Umechukwu
         </span>
-      </div>
+      </Link>
 
       <Button
         variant='ghost'
