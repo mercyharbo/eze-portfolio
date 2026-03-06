@@ -32,6 +32,7 @@ export interface Project {
         type?: 'revenue' | 'users' | 'orders'
     }[]
     sectionImage?: string // For section titles that use images
+    status?: 'live' | 'development'
     sections: ProjectSection[]
 }
 
@@ -49,6 +50,7 @@ export const PROJECTS: Project[] = [
             'Leban Street is a modern restaurant offering a fusion of Mediterranean and African flavours, popular for its quick delivery and signature street-style meals. The goal of this project was to design a mobile-first web experience that captures the restaurant’s vibrant identity while delivering a seamless and delightful food ordering flow.',
         heroImage: '/leban_cover.jpg',
         sectionImage: '/leban_title.png',
+        status: 'live',
         visitUrl: '#',
         metrics: [
             {
@@ -169,6 +171,7 @@ export const PROJECTS: Project[] = [
             'Facity is built to streamline the everyday financial chaos of campus life. It focuses on the small but constant transactions students make daily all from one clean, digital wallet.',
         heroImage: '/facity_cover.jpg',
         sectionImage: '/facity-title.png',
+        status: 'live',
         visitUrl: '#',
         metrics: [
             {
@@ -287,6 +290,7 @@ export const PROJECTS: Project[] = [
         overview:
             'Innovation Hub is a digital platform built to spotlight groundbreaking ideas, products, and technologies. It’s a space where innovation takes center stage – documented, celebrated, and followed as it evolves from concept to reality.',
         heroImage: '/innovation-cover.png',
+        status: 'live',
         visitUrl: '#',
         sections: [
             {
@@ -449,6 +453,7 @@ export const PROJECTS: Project[] = [
         tools: ['FIGMA', 'WORDPRESS'],
         skills: ['UX DESIGNER', 'WORDPRESS DEVELOPER', 'WEB DESIGNER'],
         visitUrl: '#',
+        status: 'live',
         metrics: [
             {
                 value: '$30,000+',
@@ -638,6 +643,234 @@ export const PROJECTS: Project[] = [
                 ],
                 postContent:
                     'Communication is paramount in any collaborative environment, and I value open, transparent communication as a cornerstone of success. Punctuality demonstrates respect for others\' time and commitments, reflecting my own dedication to meeting deadlines and honouring agreements. Responsibility, encompassing both teamwork and accountability, aligns with my belief in the importance of working collaboratively towards shared goals while taking ownership of my actions and decisions. These values not only reflect my personal ethos but also create a supportive and empowering culture conducive to growth and achievement.',
+            },
+        ],
+    },
+    {
+        id: 'ounje-oba',
+        title: 'Ounje Oba - Digital Marketplace for Local Food Vendors',
+        category: 'Product Design',
+        year: '2024',
+        layout: 'classic',
+        tools: ['LOTTIEFILES', 'FIGMA', 'NOTION'],
+        skills: ['PRODUCT DESIGN', 'UX DESIGNER', 'UX RESEARCHER', 'MOBILE FIRST DESIGN'],
+        overview:
+            'Ounje Oba was created to solve the everyday challenge of buying fresh food items from local markets in a fast, reliable, and transparent way. Many users rely on informal buying processes that lack price clarity, delivery tracking, and accountability.',
+        heroImage: '/ounje-oba (1).png',
+        status: 'live',
+        sections: [
+            {
+                id: 'overview',
+                type: 'overview',
+                title: 'Project Overview',
+                content: [
+                    'Ounje Oba was created to solve the everyday challenge of buying fresh food items from local markets in a fast, reliable, and transparent way. Many users rely on informal buying processes that lack price clarity, delivery tracking, and accountability.',
+                    'The goal of this project was to design a scalable, user-friendly digital platform that serves the customers while maintaining simplicity across mobile and web experiences.',
+                ],
+                images: [{ url: '/ounje oba.png', alt: 'Ounje Oba Platform' }],
+                imagePosition: 'bottom',
+            },
+            {
+                id: 'goals',
+                type: 'goals',
+                title: 'Design Goals',
+                content: 'The design focused on three core goals:',
+                items: [
+                    {
+                        title: '1',
+                        body: 'Accessibility – Ensure the app works seamlessly for users with varying levels of digital literacy.',
+                    },
+                    {
+                        title: '2',
+                        body: 'Efficiency – Reduce the steps needed to place and fulfill an order.',
+                    },
+                    {
+                        title: '3',
+                        body: 'Trust & Transparency – Make pricing, order status, and accountability clear at every stage.',
+                    },
+                ],
+            },
+            {
+                id: 'ui-designs',
+                type: 'ui-designs',
+                images: [
+                    { url: '/ounje-oba (8).png', alt: 'Ounje Oba UI Design 8' },
+                    { url: '/ounje-oba (7).png', alt: 'Ounje Oba UI Design 7' },
+                    { url: '/ounje-oba (6).png', alt: 'Ounje Oba UI Design 6' },
+                    { url: '/ounje-oba (5).png', alt: 'Ounje Oba UI Design 5' },
+                    { url: '/ounje-oba (4).png', alt: 'Ounje Oba UI Design 4' },
+                    { url: '/ounje-oba (3).png', alt: 'Ounje Oba UI Design 3' },
+                    { url: '/ounje-oba (2).png', alt: 'Ounje Oba UI Design 2' },
+                ],
+            },
+            {
+                id: 'outcome',
+                type: 'outcome',
+                title: 'Outcome',
+                content:
+                    'The final design delivers a practical, scalable marketplace experience tailored to local food commerce. The product design balances business goals with on-the-ground realities, making Ounje Oba both usable and impactful.',
+            },
+        ],
+    },
+    {
+        id: 'crm-dashboard',
+        title: 'CRM Dashboard – Lead to Cash Workflow',
+        category: 'Product Design',
+        year: '2024',
+        layout: 'classic',
+        tools: ['FIGMA', 'WORKFLOW MAPPING', 'NOTION'],
+        skills: ['PRODUCT DESIGN', 'UX DESIGNERS', 'UX RESEARCHER', 'SYSTEM THINKING', 'DASHBOARD'],
+        overview:
+            'This CRM dashboard was designed to streamline the end-to-end sales and delivery process for hospitality, sponsorship, and corporate partnerships.',
+        heroImage: '/cover.png',
+        status: 'development',
+        sections: [
+            {
+                id: 'overview',
+                type: 'overview',
+                title: 'Project Overview',
+                content: [
+                    'This CRM dashboard was designed to streamline the end-to-end sales and delivery process for hospitality, sponsorship, and corporate partnerships.',
+                    'Many teams rely on fragmented tools, spreadsheets, and manual follow-ups, which leads to lost leads, poor visibility, and missed renewals.',
+                    'The goal of this project was to design a clear, structured Lead-to-Cash system that captures leads, manages deals, automates key documents, and tracks delivery — all within a simple, easy-to-use CRM experience.',
+                ],
+                images: [{ url: '/crm-1.png', alt: 'CRM Dashboard Overview' }],
+                imagePosition: 'bottom',
+            },
+            {
+                id: 'goals',
+                type: 'goals',
+                title: 'Design Goals',
+                content: 'The design focused on three core goals:',
+                items: [
+                    {
+                        title: '1',
+                        body: 'Simplicity – Remove unnecessary enterprise CRM complexity and focus only on what sales and operations teams actually need.',
+                    },
+                    {
+                        title: '2',
+                        body: 'Visibility – Ensure every deal, document, payment, and delivery status is visible at a glance.',
+                    },
+                    {
+                        title: '3',
+                        body: 'Continuity – Create a seamless flow from first contact to renewal, without breaking context or losing historical data.',
+                    },
+                ],
+            },
+            {
+                id: 'ui-designs',
+                type: 'ui-designs',
+                images: [
+                    { url: '/crm-2.jpg', alt: 'CRM Dashboard Design 2' },
+                    { url: '/crm-3.jpg', alt: 'CRM Dashboard Design 3' },
+                    { url: '/crm-4.jpg', alt: 'CRM Dashboard Design 4' },
+                    { url: '/crm-5.jpg', alt: 'CRM Dashboard Design 5' },
+                    { url: '/crm-6.jpg', alt: 'CRM Dashboard Design 6' },
+                    { url: '/crm-7.jpg', alt: 'CRM Dashboard Design 7' },
+                    { url: '/crm-8.jpg', alt: 'CRM Dashboard Design 8' },
+                    { url: '/crm-9.jpg', alt: 'CRM Dashboard Design 9' },
+                ],
+            },
+            {
+                id: 'outcome',
+                type: 'outcome',
+                title: 'Outcome',
+                content: [
+                    'The final CRM dashboard delivers a structured yet flexible Lead-to-Cash system that supports sales, finance, marketing, and operations teams without unnecessary complexity.',
+                    'The design balances business visibility with usability, making it suitable for organizations that need enterprise discipline without enterprise friction.',
+                ],
+            },
+        ],
+    },
+    {
+        id: 'fund-cycle',
+        title: 'Fund Cycle — Digital Thrift & Savings Management App',
+        category: 'Product Design',
+        year: '2024',
+        layout: 'classic',
+        tools: ['FIGMA', 'WORKFLOW MAPPING', 'NOTION'],
+        skills: ['PRODUCT DESIGN', 'UX DESIGNERS', 'UX RESEARCHER', 'SYSTEM THINKING', 'DASHBOARD'],
+        overview:
+            'A mobile-first platform that helps individuals and groups save money collaboratively, manage thrift cycles, and automate contributions with transparency and trust.',
+        heroImage: '/thift-cover.png',
+        status: 'development',
+        sections: [
+            {
+                id: 'overview',
+                type: 'workflow',
+                title: 'Project Overview',
+                itemTitleWeight: 'medium',
+                items: [
+                    {
+                        title: 'Problem',
+                        body: 'Traditional thrift savings (ajo/esusu/adashe) rely heavily on manual tracking, trust, and offline coordination. This often leads to missed contributions, disputes, lack of transparency, and difficulty scaling savings groups beyond close-knit circles.',
+                    },
+                    {
+                        title: 'Solution',
+                        body: 'Fund Cycle was designed to digitize the thrift savings experience—allowing users to create or join savings groups, automate contributions, track payouts, and manage cycles securely through a mobile app.',
+                    },
+                    {
+                        title: 'Product Goal',
+                        body: 'To create a secure, transparent, and easy-to-use platform that enables individuals and groups to save collaboratively while reducing friction, errors, and trust issues.',
+                    },
+                ],
+                images: [{ url: '/thrift-10.jpg', alt: 'Fund Cycle Product Goal' }],
+                imagePosition: 'bottom',
+            },
+            {
+                id: 'goals',
+                type: 'goals',
+                title: 'Design Goals',
+                content: 'The design focused on three core goals:',
+                items: [
+                    {
+                        title: '1',
+                        body: 'Accessibility – Design an experience that works for users with varying levels of financial and digital literacy.',
+                    },
+                    {
+                        title: '2',
+                        body: 'Transparency & Trust – Ensure every contribution, payout, and cycle status is visible and traceable.',
+                    },
+                    {
+                        title: '3',
+                        body: 'Efficiency – Reduce the effort required to create groups, contribute funds, and receive payouts.',
+                    },
+                ],
+            },
+            {
+                id: 'ui-designs',
+                type: 'ui-designs',
+                images: [
+                    { url: '/thirft-1.jpg', alt: 'Fund Cycle UI Design 1' },
+                    { url: '/thirft-2.jpg', alt: 'Fund Cycle UI Design 2' },
+                    { url: '/thirft-3.jpg', alt: 'Fund Cycle UI Design 3' },
+                    { url: '/thirft-4.jpg', alt: 'Fund Cycle UI Design 4' },
+                    { url: '/thirft-5.jpg', alt: 'Fund Cycle UI Design 5' },
+                    { url: '/thirft-6.jpg', alt: 'Fund Cycle UI Design 6' },
+                    { url: '/thirft-7.jpg', alt: 'Fund Cycle UI Design 7' },
+                    { url: '/thrift-8.jpg', alt: 'Fund Cycle UI Design 8' },
+                ],
+            },
+            {
+                id: 'outcome',
+                type: 'workflow',
+                title: 'Outcome',
+                itemTitleWeight: 'medium',
+                items: [
+                    {
+                        title: 'Final Outcome',
+                        body: 'The final design delivers a scalable and user-centered digital savings platform that simplifies thrift management while preserving the trust and accountability central to traditional savings groups.',
+                    },
+                    {
+                        title: 'Impact Highlights',
+                        body: [
+                            'Reduced contribution friction',
+                            'Improved transparency for group savings',
+                            'Clear admin control and accountability',
+                            'Ready for future expansion (web + admin dashboard)',
+                        ],
+                    },
+                ],
             },
         ],
     },

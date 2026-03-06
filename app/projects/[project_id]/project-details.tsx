@@ -10,6 +10,7 @@ import {
   ArrowLeft,
   ArrowRightLeft,
   ArrowUpRight,
+  Hourglass,
   IdCard,
   Users,
   Wallet,
@@ -133,7 +134,7 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
         <div className='flex flex-col sm:flex-row items-center justify-between gap-6 reveal-up'>
           <Button
             asChild
-            className='rounded-full bg-gray-800 text-white h-12 w-full sm:w-40'
+            className='rounded-full bg-gray-800 text-white h-12 w-full sm:w-40 border border-white/5 hover:bg-gray-700 transition-all'
           >
             <Link href='/'>
               <ArrowLeft className='size-4' />
@@ -141,16 +142,29 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
             </Link>
           </Button>
 
-          {project.visitUrl && (
-            <Button asChild className='rounded-full h-12 w-full sm:w-48'>
-              <a
+          {project.status === 'live' && project.visitUrl && (
+            <Button
+              asChild
+              className='rounded-full h-12 w-full sm:w-48 bg-linear-to-r from-cyan-500 to-blue-600 hover:brightness-110 text-white border-none shadow-lg shadow-blue-500/20 transition-all font-semibold'
+            >
+              <Link
                 href={project.visitUrl}
                 target='_blank'
                 rel='noopener noreferrer'
               >
                 <span>Visit website</span>
-                <ArrowUpRight className='size-4' />
-              </a>
+                <ArrowUpRight className='size-4 ml-1' />
+              </Link>
+            </Button>
+          )}
+
+          {project.status === 'development' && (
+            <Button
+              disabled
+              className='rounded-full bg-gray-800 text-white h-12 w-full sm:w-64 border border-white/5 cursor-default hover:bg-gray-800/60 transition-all'
+            >
+              <span className='font-medium'>Development in progress</span>
+              <Hourglass className='size-4 ml-2 opacity-90' />
             </Button>
           )}
         </div>
@@ -312,7 +326,7 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
                 {section.imagePosition === 'top' &&
                   section.images &&
                   section.images.length > 0 && (
-                    <div className='flex flex-col gap-12 lg:gap-24 -mx-5 lg:mx-0'>
+                    <div className='flex flex-col gap-6 lg:gap-12 lg:mx-0'>
                       {section.images.map((image, i) => (
                         <div key={i} className='space-y-8'>
                           <Image
@@ -394,7 +408,7 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
                       )}
                       {section.items && (
                         <div
-                          className={`grid grid-cols-1 ${section.type === 'research' ? 'gap-4' : 'gap-8 lg:gap-12'}`}
+                          className={`grid grid-cols-1 ${section.type === 'research' ? 'gap-4' : 'gap-5 lg:gap-6'}`}
                         >
                           {section.items.map((item, i) => (
                             <div
@@ -423,6 +437,7 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
                                       </span>
                                     )}
                                   {item.title &&
+                                    item.title !== (i + 1).toString() &&
                                     item.body &&
                                     !Array.isArray(item.body) &&
                                     ': '}
@@ -654,7 +669,7 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
 
                   {/* UI Designs Section Header (Special case for project.sectionImage) */}
                   {section.type === 'ui-designs' && project.sectionImage && (
-                    <div className='-mx-5 lg:mx-0'>
+                    <div className='lg:mx-0'>
                       <Image
                         src={project.sectionImage}
                         alt='Section Title'
@@ -671,7 +686,7 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
                     section.images &&
                     section.images.length > 0 && (
                       <div
-                        className={`flex flex-col gap-12 lg:gap-24 -mx-5 lg:mx-0 ${section.type === 'scope' || section.type === 'research' || section.type === 'goals' || section.type === 'workflow' || section.type === 'insights' ? 'mt-12 lg:mt-24' : ''}`}
+                        className={`flex flex-col gap-6 lg:gap-12 lg:mx-0 ${section.type === 'scope' || section.type === 'research' || section.type === 'goals' || section.type === 'workflow' || section.type === 'insights' ? 'mt-6 lg:mt-12' : ''}`}
                       >
                         {section.images.map((image, i) => (
                           <div key={i} className='space-y-8'>
