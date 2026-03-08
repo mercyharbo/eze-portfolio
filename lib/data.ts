@@ -656,7 +656,7 @@ export const PROJECTS: Project[] = [
         skills: ['PRODUCT DESIGN', 'UX DESIGNER', 'UX RESEARCHER', 'MOBILE FIRST DESIGN'],
         overview:
             'Ounje Oba was created to solve the everyday challenge of buying fresh food items from local markets in a fast, reliable, and transparent way. Many users rely on informal buying processes that lack price clarity, delivery tracking, and accountability.',
-        heroImage: '/ounje-oba (1).png',
+        heroImage: '/ounje-oba-1.png',
         status: 'live',
         sections: [
             {
@@ -667,7 +667,7 @@ export const PROJECTS: Project[] = [
                     'Ounje Oba was created to solve the everyday challenge of buying fresh food items from local markets in a fast, reliable, and transparent way. Many users rely on informal buying processes that lack price clarity, delivery tracking, and accountability.',
                     'The goal of this project was to design a scalable, user-friendly digital platform that serves the customers while maintaining simplicity across mobile and web experiences.',
                 ],
-                images: [{ url: '/ounje oba.png', alt: 'Ounje Oba Platform' }],
+                images: [{ url: '/ounje-oba.png', alt: 'Ounje Oba Platform' }],
                 imagePosition: 'bottom',
             },
             {
@@ -694,13 +694,13 @@ export const PROJECTS: Project[] = [
                 id: 'ui-designs',
                 type: 'ui-designs',
                 images: [
-                    { url: '/ounje-oba (8).png', alt: 'Ounje Oba UI Design 8' },
-                    { url: '/ounje-oba (7).png', alt: 'Ounje Oba UI Design 7' },
-                    { url: '/ounje-oba (6).png', alt: 'Ounje Oba UI Design 6' },
-                    { url: '/ounje-oba (5).png', alt: 'Ounje Oba UI Design 5' },
-                    { url: '/ounje-oba (4).png', alt: 'Ounje Oba UI Design 4' },
-                    { url: '/ounje-oba (3).png', alt: 'Ounje Oba UI Design 3' },
-                    { url: '/ounje-oba (2).png', alt: 'Ounje Oba UI Design 2' },
+                    { url: '/ounje-oba-8.png', alt: 'Ounje Oba UI Design 8' },
+                    { url: '/ounje-oba-7.png', alt: 'Ounje Oba UI Design 7' },
+                    { url: '/ounje-oba-6.png', alt: 'Ounje Oba UI Design 6' },
+                    { url: '/ounje-oba-5.png', alt: 'Ounje Oba UI Design 5' },
+                    { url: '/ounje-oba-4.png', alt: 'Ounje Oba UI Design 4' },
+                    { url: '/ounje-oba-3.png', alt: 'Ounje Oba UI Design 3' },
+                    { url: '/ounje-oba-2.png', alt: 'Ounje Oba UI Design 2' },
                 ],
             },
             {

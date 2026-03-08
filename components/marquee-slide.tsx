@@ -19,10 +19,10 @@ export const MarqueeSlide = () => {
     '/15.png',
     '/16.png',
     '/17.png',
-    '/18 Facity For MSME.jpg',
+    '/18-facity-for-msme.jpg',
     '/access.jpg',
     '/consonance-1.png',
-    '/LANDING PAGE 11 1.png',
+    '/landing-page-11-1.png',
   ]
 
   return (

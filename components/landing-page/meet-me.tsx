@@ -101,7 +101,7 @@ export const MeetMe = () => {
             </div>
             <div className='col-span-8 bg-[#E1E3E6]/5 rounded-2xl border border-white/5 relative overflow-hidden'>
               <Image
-                src='/14bb712425765d20ab2d1e18035aa891d3a590b6 (1).png'
+                src='/14bb712425765d20ab2d1e18035aa891d3a590b6-1.png'
                 alt=''
                 fill
                 sizes='(max-width: 1024px) 67vw, 40vw'
