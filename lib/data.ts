@@ -51,7 +51,7 @@ export const PROJECTS: Project[] = [
         heroImage: '/leban_cover.jpg',
         sectionImage: '/leban_title.png',
         status: 'live',
-        visitUrl: '#',
+        visitUrl: 'https://www.lebanstreet.com/',
         metrics: [
             {
                 value: '$30,000+',
@@ -172,7 +172,7 @@ export const PROJECTS: Project[] = [
         heroImage: '/facity_cover.jpg',
         sectionImage: '/facity-title.png',
         status: 'live',
-        visitUrl: '#',
+        visitUrl: 'https://apps.apple.com/ng/app/facity/id6505069222',
         metrics: [
             {
                 value: '₦4,217,000+',
@@ -452,7 +452,7 @@ export const PROJECTS: Project[] = [
         heroImage: '/consonance-cover.png',
         tools: ['FIGMA', 'WORDPRESS'],
         skills: ['UX DESIGNER', 'WORDPRESS DEVELOPER', 'WEB DESIGNER'],
-        visitUrl: '#',
+        visitUrl: 'https://consonance.club/',
         status: 'live',
         metrics: [
             {
