@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowDown, ArrowUp, User } from 'lucide-react'
+import { User, ShoppingBag, Wallet, ArrowUpDown, Users, IdCard } from 'lucide-react'
 import Image from 'next/image'
 
 export const Metrics = () => {
@@ -25,7 +25,7 @@ export const Metrics = () => {
               In the past{' '}
               <span className='text-primary font-semibold'>4 years</span>,
               I&apos;ve helped teams design and ship over{' '}
-              <span className='text-primary font-semibold'>10 products</span>.
+              <span className='text-primary font-semibold'>5 products</span>.
             </p>
           </div>
 
@@ -45,12 +45,17 @@ export const Metrics = () => {
                 ),
               },
               {
-                metric: '30%',
-                label: 'Reduction in onboarding drop-off rates.',
-                icon: <ArrowDown className='size-5 text-primary' />,
+                metric: '700+',
+                label: 'Customers onboarded within the first 14 days.',
+                icon: <User className='size-5 text-primary' />,
               },
               {
-                metric: '6',
+                metric: '3,000+',
+                label: 'Orders fulfilled within the first 4 months of launch.',
+                icon: <ShoppingBag className='size-5 text-primary' />,
+              },
+              {
+                metric: '5',
                 label: 'Live products currently used by real users.',
                 icon: (
                   <Image
@@ -63,37 +68,24 @@ export const Metrics = () => {
                 ),
               },
               {
-                metric: '10+',
-                label: 'Products designed end-to-end.',
-                icon: (
-                  <Image
-                    src='/puzzle.png'
-                    alt=''
-                    width={20}
-                    height={20}
-                    className='size-5'
-                  />
-                ),
+                metric: '₦4M+',
+                label: 'Transaction volume within the first 3 months of launch.',
+                icon: <Wallet className='size-5 text-primary' />,
               },
               {
-                metric: '27%',
-                label: 'Increase in monthly recurring revenue after redesign',
-                icon: <ArrowUp className='size-5 text-primary' />,
+                metric: '5,500+',
+                label: 'Total transaction count within the first 3 months of launch.',
+                icon: <ArrowUpDown className='size-5 text-primary' />,
               },
               {
-                metric: '4,200+',
-                label: 'Users onboarded within the first 30 days',
-                icon: <User className='size-5 text-primary' />,
+                metric: '4,400+',
+                label: 'Total users within the first 3 months of launch.',
+                icon: <Users className='size-5 text-primary' />,
               },
               {
-                metric: '25%',
-                label: 'Decrease in usability-related support tickets',
-                icon: <ArrowDown className='size-5 text-primary' />,
-              },
-              {
-                metric: '35%',
-                label: 'Increase in user engagement on key product flows.',
-                icon: <ArrowUp className='size-5 text-primary' />,
+                metric: '1,900+',
+                label: 'Activated users within the first 3 months of launch.',
+                icon: <IdCard className='size-5 text-primary' />,
               },
             ].map((item, i) => (
               <div
