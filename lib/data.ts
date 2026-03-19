@@ -459,23 +459,6 @@ export const PROJECTS: Project[] = [
         skills: ['UX DESIGNER', 'WORDPRESS DEVELOPER', 'WEB DESIGNER'],
         visitUrl: 'https://consonance.club/',
         status: 'live',
-        metrics: [
-            {
-                value: '$30,000+',
-                label: 'Revenue generated within the first 3 months of launch.',
-                type: 'revenue',
-            },
-            {
-                value: '700+',
-                label: 'Customers onboarded within the first 14 days.',
-                type: 'users',
-            },
-            {
-                value: '3,000+',
-                label: 'Orders fulfilled within the first 4 months of launch.',
-                type: 'orders',
-            },
-        ],
         sections: [
             {
                 id: 'overview',
