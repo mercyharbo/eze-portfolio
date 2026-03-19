@@ -33,7 +33,7 @@ export const CaseStudies = () => {
                 {/* Project Image */}
                 <div className='aspect-video w-full bg-[#E1E3E6]/5 rounded-2xl overflow-hidden relative mb-6'>
                   <Image
-                    src={project.heroImage}
+                    src={project.thumbnail}
                     alt={project.title}
                     fill
                     sizes='(max-width: 768px) 100vw, 50vw'

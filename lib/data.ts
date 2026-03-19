@@ -25,6 +25,7 @@ export interface Project {
     layout: 'classic' | 'modern'
     overview: string
     heroImage: string
+    thumbnail: string
     visitUrl?: string
     metrics?: {
         value: string
@@ -48,8 +49,9 @@ export const PROJECTS: Project[] = [
         skills: ['WEB DESIGN', 'UX DESIGNER', 'UX RESEARCHER'],
         overview:
             'Leban Street is a modern restaurant offering a fusion of Mediterranean and African flavours, popular for its quick delivery and signature street-style meals. The goal of this project was to design a mobile-first web experience that captures the restaurant’s vibrant identity while delivering a seamless and delightful food ordering flow.',
-        heroImage: '/leban_cover.jpg',
-        sectionImage: '/leban_title.png',
+        heroImage: '/Leban Street/Cover.png',
+        thumbnail: '/Leban Street/Thumbnail.png',
+        sectionImage: '/Leban Street/01.png',
         status: 'live',
         visitUrl: 'https://www.lebanstreet.com/',
         metrics: [
@@ -141,10 +143,10 @@ export const PROJECTS: Project[] = [
                 id: 'ui-designs',
                 type: 'ui-designs',
                 images: [
-                    { url: '/leban-1.png', alt: 'Leban Street Design 1' },
-                    { url: '/leban-2.png', alt: 'Leban Street Design 2' },
-                    { url: '/leban-3.png', alt: 'Leban Street Design 3' },
-                    { url: '/leban-4.png', alt: 'Leban Street Design 4' },
+                    { url: '/Leban Street/02.png', alt: 'Leban Street Design 1' },
+                    { url: '/Leban Street/03.png', alt: 'Leban Street Design 2' },
+                    { url: '/Leban Street/04.png', alt: 'Leban Street Design 3' },
+                    { url: '/Leban Street/05.png', alt: 'Leban Street Design 4' },
                 ],
             },
             {
@@ -169,8 +171,9 @@ export const PROJECTS: Project[] = [
         skills: ['PRODUCT DESIGNER', 'UX DESIGNER', 'UI DESIGNER'],
         overview:
             'Facity is built to streamline the everyday financial chaos of campus life. It focuses on the small but constant transactions students make daily all from one clean, digital wallet.',
-        heroImage: '/facity_cover.jpg',
-        sectionImage: '/facity-title.png',
+        heroImage: '/Facity/Cover.png',
+        thumbnail: '/Facity/Thumbnail.png',
+        sectionImage: '/Facity/01.png',
         status: 'live',
         visitUrl: 'https://apps.apple.com/ng/app/facity/id6505069222',
         metrics: [
@@ -206,8 +209,8 @@ export const PROJECTS: Project[] = [
                     'Facity also includes a shuttle feature that lets students book or schedule campus rides directly in-app. On top of that, students can discover and pay for campus events without chasing physical tickets or middlemen.',
                 ],
                 images: [
-                    { url: '/image-1.png', alt: 'Facity Experience 1' },
-                    { url: '/image-2.png', alt: 'Facity Experience 2' },
+                    { url: '/Facity/02.png', alt: 'Facity Experience 1' },
+                    { url: '/Facity/03.png', alt: 'Facity Experience 2' },
                 ],
             },
             {
@@ -267,13 +270,13 @@ export const PROJECTS: Project[] = [
                 id: 'ui-designs',
                 type: 'ui-designs',
                 images: [
-                    { url: '/image-3.png', alt: 'Facity UI Design 1' },
-                    { url: '/image-4.png', alt: 'Facity UI Design 2' },
-                    { url: '/image-5.png', alt: 'Facity UI Design 3' },
-                    { url: '/image-6.png', alt: 'Facity UI Design 4' },
-                    { url: '/image-7.png', alt: 'Facity UI Design 5' },
-                    { url: '/image-8.png', alt: 'Facity UI Design 6' },
-                    { url: '/image-9.png', alt: 'Facity UI Design 7' },
+                    { url: '/Facity/04.png', alt: 'Facity UI Design 1' },
+                    { url: '/Facity/05.png', alt: 'Facity UI Design 2' },
+                    { url: '/Facity/06.png', alt: 'Facity UI Design 3' },
+                    { url: '/Facity/07.png', alt: 'Facity UI Design 4' },
+                    { url: '/Facity/08.png', alt: 'Facity UI Design 5' },
+                    { url: '/Facity/09.png', alt: 'Facity UI Design 6' },
+                    { url: '/Facity/10.png', alt: 'Facity UI Design 7' },
                 ],
             },
         ],
@@ -289,7 +292,8 @@ export const PROJECTS: Project[] = [
         skills: ['PRODUCT DESIGNER', 'UX DESIGNER', 'UX RESEARCHER'],
         overview:
             'Innovation Hub is a digital platform built to spotlight groundbreaking ideas, products, and technologies. It’s a space where innovation takes center stage – documented, celebrated, and followed as it evolves from concept to reality.',
-        heroImage: '/innovation-cover.png',
+        heroImage: '/Innovation Hub/Cover.png',
+        thumbnail: '/Innovation Hub/Thumbnail.png',
         status: 'live',
         visitUrl: '#',
         sections: [
@@ -304,10 +308,10 @@ export const PROJECTS: Project[] = [
                     'We set out to change that!',
                 ],
                 images: [
-                    { url: '/innovation-1.png', alt: 'Feature 1' },
-                    { url: '/innovation-2.png', alt: 'Feature 2' },
-                    { url: '/innovation-3.png', alt: 'Feature 3' },
-                    { url: '/innovation-4.png', alt: 'Feature 4' },
+                    { url: '/Innovation Hub/01.png', alt: 'Feature 1' },
+                    { url: '/Innovation Hub/02.png', alt: 'Feature 2' },
+                    { url: '/Innovation Hub/03.png', alt: 'Feature 3' },
+                    { url: '/Innovation Hub/04.png', alt: 'Feature 4' },
                 ],
             },
             {
@@ -428,14 +432,14 @@ export const PROJECTS: Project[] = [
                 id: 'ui-designs',
                 type: 'ui-designs',
                 images: [
-                    { url: '/innovation-5.png', alt: 'Innovation Hub UI 1' },
-                    { url: '/innovation-6.png', alt: 'Innovation Hub UI 2' },
-                    { url: '/innovation-7.png', alt: 'Innovation Hub UI 3' },
-                    { url: '/innovation-8.png', alt: 'Innovation Hub UI 4' },
-                    { url: '/innovation-9.png', alt: 'Innovation Hub UI 5' },
-                    { url: '/innovation-10.png', alt: 'Innovation Hub UI 6' },
-                    { url: '/innovation-11.png', alt: 'Innovation Hub UI 7' },
-                    { url: '/innovation-12.png', alt: 'Innovation Hub UI 8' },
+                    { url: '/Innovation Hub/05.png', alt: 'Innovation Hub UI 1' },
+                    { url: '/Innovation Hub/06.png', alt: 'Innovation Hub UI 2' },
+                    { url: '/Innovation Hub/07.png', alt: 'Innovation Hub UI 3' },
+                    { url: '/Innovation Hub/08.png', alt: 'Innovation Hub UI 4' },
+                    { url: '/Innovation Hub/09.png', alt: 'Innovation Hub UI 5' },
+                    { url: '/Innovation Hub/10.png', alt: 'Innovation Hub UI 6' },
+                    { url: '/Innovation Hub/11.png', alt: 'Innovation Hub UI 7' },
+                    { url: '/Innovation Hub/12.png', alt: 'Innovation Hub UI 8' },
                 ],
             },
         ],
@@ -449,7 +453,8 @@ export const PROJECTS: Project[] = [
         layout: 'classic',
         overview:
             'A comprehensive redesign and development of Consonance Club’s digital presence, focusing on creating a seamless user experience and a high-performance WordPress platform.',
-        heroImage: '/consonance-cover.png',
+        heroImage: '/Consonance Club/Cover.png',
+        thumbnail: '/Consonance Club/Thumbnail.png',
         tools: ['FIGMA', 'WORDPRESS'],
         skills: ['UX DESIGNER', 'WORDPRESS DEVELOPER', 'WEB DESIGNER'],
         visitUrl: 'https://consonance.club/',
@@ -656,7 +661,8 @@ export const PROJECTS: Project[] = [
         skills: ['PRODUCT DESIGN', 'UX DESIGNER', 'UX RESEARCHER', 'MOBILE FIRST DESIGN'],
         overview:
             'Ounje Oba was created to solve the everyday challenge of buying fresh food items from local markets in a fast, reliable, and transparent way. Many users rely on informal buying processes that lack price clarity, delivery tracking, and accountability.',
-        heroImage: '/ounje-oba-1.png',
+        heroImage: '/Ounje Oba/Cover.png',
+        thumbnail: '/Ounje Oba/Thumbnail.png',
         status: 'live',
         sections: [
             {
@@ -667,7 +673,7 @@ export const PROJECTS: Project[] = [
                     'Ounje Oba was created to solve the everyday challenge of buying fresh food items from local markets in a fast, reliable, and transparent way. Many users rely on informal buying processes that lack price clarity, delivery tracking, and accountability.',
                     'The goal of this project was to design a scalable, user-friendly digital platform that serves the customers while maintaining simplicity across mobile and web experiences.',
                 ],
-                images: [{ url: '/ounje-oba.png', alt: 'Ounje Oba Platform' }],
+                images: [{ url: '/Ounje Oba/01.png', alt: 'Ounje Oba Platform' }],
                 imagePosition: 'bottom',
             },
             {
@@ -694,13 +700,13 @@ export const PROJECTS: Project[] = [
                 id: 'ui-designs',
                 type: 'ui-designs',
                 images: [
-                    { url: '/ounje-oba-8.png', alt: 'Ounje Oba UI Design 8' },
-                    { url: '/ounje-oba-7.png', alt: 'Ounje Oba UI Design 7' },
-                    { url: '/ounje-oba-6.png', alt: 'Ounje Oba UI Design 6' },
-                    { url: '/ounje-oba-5.png', alt: 'Ounje Oba UI Design 5' },
-                    { url: '/ounje-oba-4.png', alt: 'Ounje Oba UI Design 4' },
-                    { url: '/ounje-oba-3.png', alt: 'Ounje Oba UI Design 3' },
-                    { url: '/ounje-oba-2.png', alt: 'Ounje Oba UI Design 2' },
+                    { url: '/Ounje Oba/02.png', alt: 'Ounje Oba UI Design 8' },
+                    { url: '/Ounje Oba/03.png', alt: 'Ounje Oba UI Design 7' },
+                    { url: '/Ounje Oba/04.png', alt: 'Ounje Oba UI Design 6' },
+                    { url: '/Ounje Oba/05.png', alt: 'Ounje Oba UI Design 5' },
+                    { url: '/Ounje Oba/06.png', alt: 'Ounje Oba UI Design 4' },
+                    { url: '/Ounje Oba/07.png', alt: 'Ounje Oba UI Design 3' },
+                    { url: '/Ounje Oba/08.png', alt: 'Ounje Oba UI Design 2' },
                 ],
             },
             {
@@ -722,7 +728,8 @@ export const PROJECTS: Project[] = [
         skills: ['PRODUCT DESIGN', 'UX DESIGNERS', 'UX RESEARCHER', 'SYSTEM THINKING', 'DASHBOARD'],
         overview:
             'This CRM dashboard was designed to streamline the end-to-end sales and delivery process for hospitality, sponsorship, and corporate partnerships.',
-        heroImage: '/cover.png',
+        heroImage: '/CRM Dashboard/Cover.png',
+        thumbnail: '/CRM Dashboard/Thumbnail.png',
         status: 'development',
         sections: [
             {
@@ -734,7 +741,7 @@ export const PROJECTS: Project[] = [
                     'Many teams rely on fragmented tools, spreadsheets, and manual follow-ups, which leads to lost leads, poor visibility, and missed renewals.',
                     'The goal of this project was to design a clear, structured Lead-to-Cash system that captures leads, manages deals, automates key documents, and tracks delivery — all within a simple, easy-to-use CRM experience.',
                 ],
-                images: [{ url: '/crm-1.png', alt: 'CRM Dashboard Overview' }],
+                images: [{ url: '/CRM Dashboard/01.png', alt: 'CRM Dashboard Overview' }],
                 imagePosition: 'bottom',
             },
             {
@@ -761,14 +768,14 @@ export const PROJECTS: Project[] = [
                 id: 'ui-designs',
                 type: 'ui-designs',
                 images: [
-                    { url: '/crm-2.jpg', alt: 'CRM Dashboard Design 2' },
-                    { url: '/crm-3.jpg', alt: 'CRM Dashboard Design 3' },
-                    { url: '/crm-4.jpg', alt: 'CRM Dashboard Design 4' },
-                    { url: '/crm-5.jpg', alt: 'CRM Dashboard Design 5' },
-                    { url: '/crm-6.jpg', alt: 'CRM Dashboard Design 6' },
-                    { url: '/crm-7.jpg', alt: 'CRM Dashboard Design 7' },
-                    { url: '/crm-8.jpg', alt: 'CRM Dashboard Design 8' },
-                    { url: '/crm-9.jpg', alt: 'CRM Dashboard Design 9' },
+                    { url: '/CRM Dashboard/02.png', alt: 'CRM Dashboard Design 2' },
+                    { url: '/CRM Dashboard/03.png', alt: 'CRM Dashboard Design 3' },
+                    { url: '/CRM Dashboard/04.png', alt: 'CRM Dashboard Design 4' },
+                    { url: '/CRM Dashboard/05.png', alt: 'CRM Dashboard Design 5' },
+                    { url: '/CRM Dashboard/06.png', alt: 'CRM Dashboard Design 6' },
+                    { url: '/CRM Dashboard/07.png', alt: 'CRM Dashboard Design 7' },
+                    { url: '/CRM Dashboard/08.png', alt: 'CRM Dashboard Design 8' },
+                    { url: '/CRM Dashboard/09.png', alt: 'CRM Dashboard Design 9' },
                 ],
             },
             {
@@ -792,7 +799,8 @@ export const PROJECTS: Project[] = [
         skills: ['PRODUCT DESIGN', 'UX DESIGNERS', 'UX RESEARCHER', 'SYSTEM THINKING', 'DASHBOARD'],
         overview:
             'A mobile-first platform that helps individuals and groups save money collaboratively, manage thrift cycles, and automate contributions with transparency and trust.',
-        heroImage: '/thift-cover.png',
+        heroImage: '/Fund Cycle/Cover.png',
+        thumbnail: '/Fund Cycle/Thumbnail.png',
         status: 'development',
         sections: [
             {
@@ -814,7 +822,7 @@ export const PROJECTS: Project[] = [
                         body: 'To create a secure, transparent, and easy-to-use platform that enables individuals and groups to save collaboratively while reducing friction, errors, and trust issues.',
                     },
                 ],
-                images: [{ url: '/thrift-10.jpg', alt: 'Fund Cycle Product Goal' }],
+                images: [{ url: '/Fund Cycle/01.png', alt: 'Fund Cycle Product Goal' }],
                 imagePosition: 'bottom',
             },
             {
@@ -841,14 +849,14 @@ export const PROJECTS: Project[] = [
                 id: 'ui-designs',
                 type: 'ui-designs',
                 images: [
-                    { url: '/thirft-1.jpg', alt: 'Fund Cycle UI Design 1' },
-                    { url: '/thirft-2.jpg', alt: 'Fund Cycle UI Design 2' },
-                    { url: '/thirft-3.jpg', alt: 'Fund Cycle UI Design 3' },
-                    { url: '/thirft-4.jpg', alt: 'Fund Cycle UI Design 4' },
-                    { url: '/thirft-5.jpg', alt: 'Fund Cycle UI Design 5' },
-                    { url: '/thirft-6.jpg', alt: 'Fund Cycle UI Design 6' },
-                    { url: '/thirft-7.jpg', alt: 'Fund Cycle UI Design 7' },
-                    { url: '/thrift-8.jpg', alt: 'Fund Cycle UI Design 8' },
+                    { url: '/Fund Cycle/02.png', alt: 'Fund Cycle UI Design 1' },
+                    { url: '/Fund Cycle/03.png', alt: 'Fund Cycle UI Design 2' },
+                    { url: '/Fund Cycle/04.png', alt: 'Fund Cycle UI Design 3' },
+                    { url: '/Fund Cycle/05.png', alt: 'Fund Cycle UI Design 4' },
+                    { url: '/Fund Cycle/06.png', alt: 'Fund Cycle UI Design 5' },
+                    { url: '/Fund Cycle/07.png', alt: 'Fund Cycle UI Design 6' },
+                    { url: '/Fund Cycle/08.png', alt: 'Fund Cycle UI Design 7' },
+                    { url: '/Fund Cycle/09.png', alt: 'Fund Cycle UI Design 8' },
                 ],
             },
             {

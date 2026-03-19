@@ -33,7 +33,7 @@ export const MoreProjects = () => {
                 {/* Visual Placeholder */}
                 <div className='aspect-square w-full bg-white rounded-2xl overflow-hidden h-70 relative'>
                   <Image
-                    src={project.heroImage}
+                    src={project.thumbnail}
                     alt={project.title}
                     fill
                     sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'

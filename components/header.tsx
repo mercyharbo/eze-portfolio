@@ -22,22 +22,68 @@ export const Header = () => {
         </span>
       </Link>
 
-      <Link 
-        href="mailto:chibuezeumechukwu@gmail.com?subject=Let's%20Work%20Together"
-      >
-        <Button
-          variant='ghost'
-          aria-label='Send a message'
-          className='relative h-11 rounded-full px-8 bg-background text-foreground transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] group'
+      <div className='flex items-center gap-4'>
+        <Link
+          href='https://x.com/__chibueze'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='size-11 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
+          aria-label='X (formerly Twitter)'
         >
-          <div className='absolute inset-0 rounded-full p-px bg-linear-to-r from-primary via-transparent to-primary'>
-            <div className='h-full w-full rounded-full bg-background' />
-          </div>
-          <span className='relative z-10 text-sm font-medium'>
-            Send me a message
-          </span>
-        </Button>
-      </Link>
+          <Image
+            src='/new-twitter.svg'
+            alt=''
+            width={20}
+            height={20}
+            className='size-5'
+          />
+        </Link>
+        <Link
+          href='https://www.linkedin.com/in/chibueze-umechukwu/'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='size-11 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
+          aria-label='LinkedIn'
+        >
+          <Image
+            src='/linkedin-02.svg'
+            alt=''
+            width={20}
+            height={20}
+            className='size-5'
+          />
+        </Link>
+        <Link
+          href="mailto:chibuezeumechukwu@gmail.com?subject=Let's%20Work%20Together"
+          className='size-11 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
+          aria-label='Email'
+        >
+          <Image
+            src='/mail-01.svg'
+            alt=''
+            width={20}
+            height={20}
+            className='size-5'
+          />
+        </Link>
+
+        <Link
+          href="mailto:chibuezeumechukwu@gmail.com?subject=Let's%20Work%20Together"
+        >
+          <Button
+            variant='ghost'
+            aria-label='Send a message'
+            className='relative h-11 rounded-full px-8 bg-background text-foreground transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:text-white group'
+          >
+            <div className='absolute inset-0 rounded-full p-px bg-linear-to-r from-primary via-transparent to-primary'>
+              <div className='h-full w-full rounded-full bg-background' />
+            </div>
+            <span className='relative z-10 text-sm font-medium'>
+              Send me a message
+            </span>
+          </Button>
+        </Link>
+      </div>
     </header>
   )
 }

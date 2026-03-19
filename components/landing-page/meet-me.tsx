@@ -49,56 +49,53 @@ export const MeetMe = () => {
                 href='https://drive.google.com/file/d/1xEAvWT4eNpXl7EcTnbS2sLYjIz9_MN2f/view?usp=sharing'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='h-11 rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90 flex items-center justify-center font-medium transition-all'
+                className='h-11 rounded-full px-8 border border-primary text-white hover:bg-primary/10 flex items-center justify-center font-medium transition-all'
               >
-                Download CV
+                View CV
               </Link>
-              
-              <div className='flex items-center gap-4'>
-                <Link
-                  href='https://x.com/__chibueze'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='size-12 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
-                  aria-label='X (formerly Twitter)'
-                >
-                  <Image
-                    src='/new-twitter.svg'
-                    alt=''
-                    width={20}
-                    height={20}
-                    className='size-5'
-                  />
-                </Link>
-                <Link
-                  href='https://www.linkedin.com/in/chibueze-umechukwu/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='size-12 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
-                  aria-label='LinkedIn'
-                >
-                  <Image
-                    src='/linkedin-02.svg'
-                    alt=''
-                    width={20}
-                    height={20}
-                    className='size-5'
-                  />
-                </Link>
-                <Link
-                  href="mailto:chibuezeumechukwu@gmail.com?subject=Let's%20Work%20Together"
-                  className='size-12 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
-                  aria-label='Email'
-                >
-                  <Image
-                    src='/mail-01.svg'
-                    alt=''
-                    width={20}
-                    height={20}
-                    className='size-5'
-                  />
-                </Link>
-              </div>
+              <Link
+                href='https://x.com/__chibueze'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='size-11 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
+                aria-label='X (formerly Twitter)'
+              >
+                <Image
+                  src='/new-twitter.svg'
+                  alt=''
+                  width={20}
+                  height={20}
+                  className='size-5'
+                />
+              </Link>
+              <Link
+                href='https://www.linkedin.com/in/chibueze-umechukwu/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='size-11 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
+                aria-label='LinkedIn'
+              >
+                <Image
+                  src='/linkedin-02.svg'
+                  alt=''
+                  width={20}
+                  height={20}
+                  className='size-5'
+                />
+              </Link>
+              <Link
+                href="mailto:chibuezeumechukwu@gmail.com?subject=Let's%20Work%20Together"
+                className='size-11 rounded-full border border-primary flex items-center justify-center text-foreground hover:bg-primary/20 transition-all duration-300'
+                aria-label='Email'
+              >
+                <Image
+                  src='/mail-01.svg'
+                  alt=''
+                  width={20}
+                  height={20}
+                  className='size-5'
+                />
+              </Link>
             </div>
           </div>
 
