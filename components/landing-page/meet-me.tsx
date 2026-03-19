@@ -44,7 +44,7 @@ export const MeetMe = () => {
               intuitive, inclusive, and kind of addictive.
             </p>
 
-            <div className='flex flex-col sm:flex-row items-start sm:items-center gap-6'>
+            <div className='flex flex-wrap items-center gap-4 sm:gap-6'>
               <Link
                 href='https://drive.google.com/file/d/1xEAvWT4eNpXl7EcTnbS2sLYjIz9_MN2f/view?usp=sharing'
                 target='_blank'
